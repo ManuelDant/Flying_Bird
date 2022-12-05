@@ -1,12 +1,12 @@
 #include "obstacle.h"
 
-int betweenObstacles = 650;
+int betweenObstacles = 760;
 
 Obstacle CreateObstacle() {
 	Obstacle obstacle{};
-	obstacle.heightUp = static_cast<float>(GetScreenHeight() / 2);
+	obstacle.heightUp = static_cast<float>(GetScreenHeight() / 2 + 100);
 	obstacle.widthUp = static_cast<float>(GetScreenWidth() / 12);
-	obstacle.heightDown = static_cast<float>(GetScreenHeight() / 2);
+	obstacle.heightDown = static_cast<float>(GetScreenHeight() / 2 + 100);
 	obstacle.widthDown = static_cast<float>(GetScreenWidth() / 12);
 
 	obstacle.positionUp.x = obstacle.positionDown.x;
@@ -31,7 +31,7 @@ void MoveObstacle(Obstacle& Obstacle) {
 		Obstacle.positionDown.x = GetScreenWidth() + Obstacle.widthDown;
 		Obstacle.positionUp.x = GetScreenWidth() + Obstacle.widthUp;
 
-		random = GetRandomValue(static_cast<int>(0 - Obstacle.heightDown / 2), static_cast<int>(GetScreenHeight() / 2 - betweenObstacles / 2));
+		random = GetRandomValue(static_cast<int>(0 - Obstacle.heightDown), static_cast<int>(GetScreenHeight() / 2 - betweenObstacles / 2));
 
 		Obstacle.positionDown.y = static_cast<float>(random);
 		Obstacle.positionUp.y = Obstacle.positionDown.y + betweenObstacles;
