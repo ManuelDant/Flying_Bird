@@ -10,8 +10,8 @@ Player CreatePlayer() {
 
 	player.isJump = false;
 
-	player.jumpTimer = 0.2f;
-	player.speedJump = 900;
+	player.jumpTimer = 0.15f;
+	player.speedJump = 700;
 
 
 	return player;

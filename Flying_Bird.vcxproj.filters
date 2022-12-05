@@ -1,3 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\game.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\player.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\timer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\obstacle.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\game.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\player.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\timer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\obstacle.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{ecf07cc9-5825-4e79-be57-0fda4d964c84}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
 </Project>

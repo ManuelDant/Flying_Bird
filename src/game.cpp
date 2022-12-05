@@ -1,5 +1,6 @@
 #include "game.h"
 #include "player.h"
+#include "obstacle.h"
 
 const int screenWidth = 1280;
 const int screenHeight = 768;
@@ -10,6 +11,7 @@ void DrawGame();
 void DrawVersion();
 
 Player player;
+Obstacle obstacle;
 
 void StartGame() {
     InitWindow(screenWidth, screenHeight, "Flying Bird by Manuel Dantuono");
@@ -26,11 +28,13 @@ void StartGame() {
 
 void InitGame() {
      player = CreatePlayer();
+     obstacle = CreateObstacle();
 }
 
 void Update() {
     PlayerInput(player);
     MovePlayer(player);
+    MoveObstacle(obstacle);
 }
 
 void DrawGame() {
@@ -40,6 +44,10 @@ void DrawGame() {
     //Player
     DrawRectangle(static_cast<int>(player.position.x), static_cast<int>(player.position.y), static_cast<int>(player.width), static_cast<int>(player.height), RED);
 
+    //Obstacle
+    DrawRectangle(static_cast<int>(obstacle.positionDown.x), static_cast<int>(obstacle.positionDown.y), static_cast<int>(obstacle.widthDown), static_cast<int>(obstacle.heightDown), GREEN);
+    DrawRectangle(static_cast<int>(obstacle.positionUp.x), static_cast<int>(obstacle.positionUp.y), static_cast<int>(obstacle.widthUp), static_cast<int>(obstacle.heightUp), GREEN);
+
     DrawVersion();
 
     
@@ -48,5 +56,5 @@ void DrawGame() {
 }
 
 void DrawVersion() {
-    DrawText("Version 0.1", static_cast<int>(GetScreenWidth() - 120), static_cast<int>(GetScreenHeight() - 30), 20, WHITE);
+    DrawText("Version 0.2", static_cast<int>(GetScreenWidth() - 120), static_cast<int>(GetScreenHeight() - 30), 20, WHITE);
 }
