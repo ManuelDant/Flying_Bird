@@ -1,18 +1,22 @@
 #include "game.h"
 #include "player.h"
 #include "obstacle.h"
+#include "score.h"
 
 const int screenWidth = 1280;
 const int screenHeight = 768;
 
 void InitGame();
 void Update();
+void RestartGame();
 void DrawGame();
 void DrawVersion();
 void ColissionPlayerObstacle(Player& Player, Obstacle& Obstacle);
+void CheckScore(Obstacle& Obstacle);
 
 Player player;
 Rectangle playerColission;
+
 
 Obstacle obstacle[maxObstacles];
 
@@ -52,9 +56,11 @@ void Update() {
         MovePlayer(player);
 
         MoveObstacle(obstacle);
+       
         for (int i = 0; i < maxObstacles; i++)
         {
             ColissionPlayerObstacle(player, obstacle[i]);
+            CheckScore(obstacle[i]);
         }
        
     }   
@@ -73,8 +79,11 @@ void DrawGame() {
         DrawRectangle(static_cast<int>(obstacle[i].positionDown.x), static_cast<int>(obstacle[i].positionDown.y), static_cast<int>(obstacle[i].widthDown), static_cast<int>(obstacle[i].heightDown), GREEN);
         DrawRectangle(static_cast<int>(obstacle[i].positionUp.x), static_cast<int>(obstacle[i].positionUp.y), static_cast<int>(obstacle[i].widthUp), static_cast<int>(obstacle[i].heightUp), GREEN);
     }
-   
 
+    //Score
+    DrawScore();
+
+    //Version
     DrawVersion();
 
     EndDrawing();
@@ -85,7 +94,11 @@ void DrawVersion() {
 }
 
 void RestartGame() {
+    StartPositionPlayer(player);
+    StartPositionObstacle(obstacle);
+    isPlay = false;
 
+    RestartScore();
 }
 
 void ColissionPlayerObstacle(Player& Player, Obstacle& Obstacle) {
@@ -96,15 +109,29 @@ void ColissionPlayerObstacle(Player& Player, Obstacle& Obstacle) {
 
     if (CheckCollisionRecs(playerColission, obstacleDown))
     {
-        StartPositionPlayer(player);
-        StartPositionObstacle(obstacle);
-        isPlay = false;
+        RestartGame();
     }
 
     if (CheckCollisionRecs(playerColission, obstacleUp))
     {
-        StartPositionPlayer(player);
-        StartPositionObstacle(obstacle);
-        isPlay = false;
+        RestartGame();
     }
+}
+
+void CheckScore(Obstacle& Obstacle) {
+    Rectangle checkScore = { Obstacle.positionDown.x + Obstacle.widthDown / 2, Obstacle.positionDown.y + betweenObstacles / 2, Obstacle.widthDown / 6, Obstacle.heightDown };
+
+    if (CheckCollisionRecs(playerColission, checkScore))
+    {
+        Obstacle.checkAddScore++;
+        if (Obstacle.checkAddScore == 1)
+        {
+            AddScore(1);
+        }
+    }
+    else
+    {
+        Obstacle.checkAddScore = 0;
+    }
+
 }

@@ -44,9 +44,9 @@ void MovePlayer(Player& Player) {
 	else
 	{
 			Player.position.y += Player.speedJump * GetFrameTime();
-			if (Player.position.y > static_cast<float>(GetScreenHeight() - 150))
+			if (Player.position.y > static_cast<float>(GetScreenHeight() - 100))
 			{
-				Player.position.y = static_cast<float>(GetScreenHeight() - 150);
+				Player.position.y = static_cast<float>(GetScreenHeight() - 100);
 			}		
 	}
 }

@@ -14,6 +14,8 @@ struct Obstacle {
 
 	float speed;
 
+	int checkAddScore = 0;
+
 };
 
 static const int maxObstacles = 4;
