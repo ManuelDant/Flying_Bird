@@ -9,8 +9,11 @@ void InitGame();
 void Update();
 void DrawGame();
 void DrawVersion();
+void ColissionPlayerObstacle(Player& Player, Obstacle& Obstacle);
 
 Player player;
+Rectangle playerColission;
+
 Obstacle obstacle[maxObstacles];
 
 bool isPlay = false;
@@ -49,6 +52,11 @@ void Update() {
         MovePlayer(player);
 
         MoveObstacle(obstacle);
+        for (int i = 0; i < maxObstacles; i++)
+        {
+            ColissionPlayerObstacle(player, obstacle[i]);
+        }
+       
     }   
 }
 
@@ -73,5 +81,30 @@ void DrawGame() {
 }
 
 void DrawVersion() {
-    DrawText("Version 0.2", static_cast<int>(GetScreenWidth() - 120), static_cast<int>(GetScreenHeight() - 30), 20, WHITE);
+    DrawText("Version 0.3", static_cast<int>(GetScreenWidth() - 120), static_cast<int>(GetScreenHeight() - 30), 20, WHITE);
+}
+
+void RestartGame() {
+
+}
+
+void ColissionPlayerObstacle(Player& Player, Obstacle& Obstacle) {
+    playerColission = { Player.position.x , Player.position.y, Player.width, Player.height };
+    Rectangle obstacleDown = { Obstacle.positionDown.x , Obstacle.positionDown.y, Obstacle.widthDown, Obstacle.heightDown };
+    Rectangle obstacleUp = { Obstacle.positionUp.x , Obstacle.positionUp.y, Obstacle.widthUp, Obstacle.heightUp };
+    
+
+    if (CheckCollisionRecs(playerColission, obstacleDown))
+    {
+        StartPositionPlayer(player);
+        StartPositionObstacle(obstacle);
+        isPlay = false;
+    }
+
+    if (CheckCollisionRecs(playerColission, obstacleUp))
+    {
+        StartPositionPlayer(player);
+        StartPositionObstacle(obstacle);
+        isPlay = false;
+    }
 }

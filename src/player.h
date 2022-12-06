@@ -16,3 +16,4 @@ struct Player {
 Player CreatePlayer();
 void PlayerInput(Player& Player);
 void MovePlayer(Player& Player);
+void StartPositionPlayer(Player& Player);

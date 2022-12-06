@@ -2,8 +2,8 @@
 
 Player CreatePlayer() {
 	Player player{};
-	player.height = static_cast<float>(GetScreenHeight() / 9);
-	player.width = static_cast<float>(GetScreenWidth() / 16);
+	player.height = static_cast<float>(GetScreenHeight() / 10);
+	player.width = static_cast<float>(GetScreenWidth() / 17);
 
 	player.position.x = static_cast<float>(GetScreenWidth() / 15);
 	player.position.y = static_cast<float>(GetScreenHeight() / 2);
@@ -49,5 +49,10 @@ void MovePlayer(Player& Player) {
 				Player.position.y = static_cast<float>(GetScreenHeight() - 150);
 			}		
 	}
+}
+
+void StartPositionPlayer(Player& Player) {
+	Player.position.x = static_cast<float>(GetScreenWidth() / 15);
+	Player.position.y = static_cast<float>(GetScreenHeight() / 2);
 }
 	
