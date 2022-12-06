@@ -19,6 +19,7 @@ void DrawVersion();
 void RestartGame();
 void CreditsScene();
 void DrawCredits();
+void DrawButtons();
 
 
 

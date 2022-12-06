@@ -8,7 +8,6 @@ const int screenWidth = 1280;
 const int screenHeight = 768;
 
 void InitGame();
-void DrawVersion();
 void ColissionPlayerObstacle(Player& Player, Obstacle& Obstacle);
 void CheckScore(Obstacle& Obstacle);
 
