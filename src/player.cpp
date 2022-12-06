@@ -6,7 +6,7 @@ Player CreatePlayer() {
 	player.width = static_cast<float>(GetScreenWidth() / 16);
 
 	player.position.x = static_cast<float>(GetScreenWidth() / 15);
-	player.position.y = static_cast<float>(GetScreenHeight() - 150);
+	player.position.y = static_cast<float>(GetScreenHeight() / 2);
 
 	player.isJump = false;
 

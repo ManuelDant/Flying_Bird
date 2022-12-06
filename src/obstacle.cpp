@@ -1,40 +1,57 @@
 #include "obstacle.h"
 
-int betweenObstacles = 760;
-
 Obstacle CreateObstacle() {
+	int random;
+
 	Obstacle obstacle{};
 	obstacle.heightUp = static_cast<float>(GetScreenHeight() / 2 + 100);
 	obstacle.widthUp = static_cast<float>(GetScreenWidth() / 12);
 	obstacle.heightDown = static_cast<float>(GetScreenHeight() / 2 + 100);
 	obstacle.widthDown = static_cast<float>(GetScreenWidth() / 12);
 
-	obstacle.positionUp.x = obstacle.positionDown.x;
+	random = GetRandomValue(static_cast<int>(0 - obstacle.heightDown), static_cast<int>(GetScreenHeight() / 2 - betweenObstacles / 2));
+
+	obstacle.positionDown.y = static_cast<float>(random);
 	obstacle.positionUp.y = obstacle.positionDown.y + betweenObstacles;
 
-	obstacle.positionDown.x = static_cast<float>(GetScreenWidth() / 4);
-	obstacle.positionDown.y = static_cast<float>(GetScreenHeight() / 20);
+	obstacle.positionUp.x = GetScreenWidth() / 2  - obstacle.widthUp;
+	obstacle.positionDown.x = GetScreenWidth() / 2- obstacle.widthDown;
 
-	obstacle.speed = 1000;
+	obstacle.speed = 300;
 
 	return obstacle;
 }
 
-void MoveObstacle(Obstacle& Obstacle) {
+void MoveObstacle(Obstacle Obstacle[]) {
 	int random;
 
-	Obstacle.positionDown.x -= Obstacle.speed * GetFrameTime();
-	Obstacle.positionUp.x -= Obstacle.speed * GetFrameTime();
-
-	if (Obstacle.positionDown.x < 0 - Obstacle.widthDown)
+	for (int i = 0; i < maxObstacles; i++)
 	{
-		Obstacle.positionDown.x = GetScreenWidth() + Obstacle.widthDown;
-		Obstacle.positionUp.x = GetScreenWidth() + Obstacle.widthUp;
+		Obstacle[i].positionDown.x -= Obstacle[i].speed * GetFrameTime();
+		Obstacle[i].positionUp.x -= Obstacle[i].speed * GetFrameTime();
 
-		random = GetRandomValue(static_cast<int>(0 - Obstacle.heightDown), static_cast<int>(GetScreenHeight() / 2 - betweenObstacles / 2));
+		if (Obstacle[i].positionDown.x < 0 - Obstacle[i].widthDown)
+		{
+			Obstacle[i].positionDown.x = GetScreenWidth() + Obstacle[i].widthDown;
+			Obstacle[i].positionUp.x = GetScreenWidth() + Obstacle[i].widthUp;
 
-		Obstacle.positionDown.y = static_cast<float>(random);
-		Obstacle.positionUp.y = Obstacle.positionDown.y + betweenObstacles;
+			random = GetRandomValue(static_cast<int>(0 - Obstacle[i].heightDown), static_cast<int>(GetScreenHeight() / 2 - betweenObstacles / 2));
+
+			Obstacle[i].positionDown.y = static_cast<float>(random);
+			Obstacle[i].positionUp.y = Obstacle[i].positionDown.y + betweenObstacles;
+		}
+	}
+	
+
+}
+
+void StartPositionObstacle(Obstacle Obstacle[]) {
+	int startDistance = 650;
+
+	for (int i = 0; i < maxObstacles; i++)
+	{
+		Obstacle[i].positionDown.x = static_cast<float>((i  * GetScreenWidth() / 3.5f) + startDistance);
+		Obstacle[i].positionUp.x = static_cast<float>((i  * GetScreenWidth() / 3.5f) + startDistance);
 	}
 
 }
