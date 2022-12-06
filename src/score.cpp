@@ -7,7 +7,7 @@ void DrawScore() {
 void DrawMaxScore() {
 	if (maxScore > 0)
 	{
-		DrawText(TextFormat("Max. Score: %02i", maxScore), GetScreenWidth() / 2 - 270, 30, 50, RED);
+		DrawText(TextFormat("Max. Score: %02i", maxScore), GetScreenWidth() / 2 - 150, 30, 50, RED);
 	}
 }
 

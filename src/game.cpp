@@ -2,21 +2,18 @@
 #include "player.h"
 #include "obstacle.h"
 #include "score.h"
+#include "gameScene.h"
 
 const int screenWidth = 1280;
 const int screenHeight = 768;
 
 void InitGame();
-void Update();
-void RestartGame();
-void DrawGame();
 void DrawVersion();
 void ColissionPlayerObstacle(Player& Player, Obstacle& Obstacle);
 void CheckScore(Obstacle& Obstacle);
 
 Player player;
 Rectangle playerColission;
-
 
 Obstacle obstacle[maxObstacles];
 
@@ -28,8 +25,7 @@ void StartGame() {
     InitGame();
     while (!WindowShouldClose())
     {
-        DrawGame();
-        Update();   
+        ScreenScene();   
     }
 
     CloseWindow();
@@ -90,7 +86,7 @@ void DrawGame() {
 }
 
 void DrawVersion() {
-    DrawText("Version 0.3", static_cast<int>(GetScreenWidth() - 120), static_cast<int>(GetScreenHeight() - 30), 20, WHITE);
+    DrawText("Version 0.4", static_cast<int>(GetScreenWidth() - 120), static_cast<int>(GetScreenHeight() - 30), 20, WHITE);
 }
 
 void RestartGame() {
@@ -127,6 +123,7 @@ void CheckScore(Obstacle& Obstacle) {
         if (Obstacle.checkAddScore == 1)
         {
             AddScore(1);
+            UpdateMaxScore();
         }
     }
     else
