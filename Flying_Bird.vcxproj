@@ -23,6 +23,7 @@
     <ClCompile Include="src\gameScene.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\obstacle.cpp" />
+    <ClCompile Include="src\parallaxBackground.cpp" />
     <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\score.cpp" />
     <ClCompile Include="src\timer.cpp" />
@@ -31,6 +32,7 @@
     <ClInclude Include="src\game.h" />
     <ClInclude Include="src\gameScene.h" />
     <ClInclude Include="src\obstacle.h" />
+    <ClInclude Include="src\parallaxBackground.h" />
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\score.h" />
     <ClInclude Include="src\timer.h" />

@@ -1,4 +1,5 @@
 #include "game.h"
+#include "parallaxBackground.h"
 #include "player.h"
 #include "obstacle.h"
 #include "score.h"
@@ -27,12 +28,14 @@ Texture2D obstacleUpImg;
 void StartGame() {
     InitWindow(screenWidth, screenHeight, "Flying Bird by Manuel Dantuono");
     LoadTextures();
+    LoadParallax();
     InitGame();
     while (!WindowShouldClose())
     {
         ScreenScene();   
     }
     UnloadTextures();
+    UnloadParallax();
     CloseWindow();
 }
 
@@ -46,13 +49,15 @@ void InitGame() {
 }
 
 void Update() {
+    
     if (!isPlay && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
     {
         isPlay = true;
     }
 
     if (isPlay)
-    {
+    {  
+        UpdateParallax();
         PlayerInput(player);
         MovePlayer(player);
 
@@ -70,7 +75,7 @@ void Update() {
 void DrawGame() {
     BeginDrawing();
     ClearBackground(BLACK);
-
+    DrawBackgroundGame();
     //Player
 #if _DEBUG
     DrawRectangle(static_cast<int>(player.position.x), static_cast<int>(player.position.y), static_cast<int>(player.width), static_cast<int>(player.height), RED);

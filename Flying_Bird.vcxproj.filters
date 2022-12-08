@@ -20,6 +20,9 @@
     <ClCompile Include="src\gameScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\parallaxBackground.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game.h">
@@ -38,6 +41,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\gameScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\parallaxBackground.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
