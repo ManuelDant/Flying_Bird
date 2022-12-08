@@ -95,6 +95,7 @@ void DrawGame() {
         
     }
 
+    DrawCircle(GetScreenWidth() - 100, 100, 40, WHITE);
     //Score
     DrawScore();
 
@@ -105,7 +106,7 @@ void DrawGame() {
 }
 
 void DrawVersion() {
-    DrawText("Version 0.4", static_cast<int>(GetScreenWidth() - 120), static_cast<int>(GetScreenHeight() - 30), 20, WHITE);
+    DrawText("Version 1.0", static_cast<int>(GetScreenWidth() - 120), static_cast<int>(GetScreenHeight() - 30), 20, WHITE);
 }
 
 void RestartGame() {

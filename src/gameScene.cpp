@@ -1,5 +1,7 @@
 #include "gameScene.h"
 #include "score.h"
+#include "parallaxBackground.h"
+
 
 void ScreenScene() {
 	switch (gamescene)
@@ -31,6 +33,8 @@ void CreditsScene() {
 void GameplayScene() {
 	Update();
 	DrawGame();
+
+	
 	
 	if (IsKeyPressed(KEY_ESCAPE))
 	{
@@ -42,12 +46,15 @@ void DrawMenu() {
 	BeginDrawing();
 	ClearBackground(BLACK);
 	RestartGame();
+	RestartParallax();
 	DrawMaxScore();
-
+	DrawBackgroundGame();
 	DrawButtons();
 
+	DrawText("Flying Bird", GetScreenWidth() / 2 - 162, GetScreenHeight() / 2 - 251, 70, BLACK);
 	DrawText("Flying Bird", GetScreenWidth() / 2 - 160, GetScreenHeight() / 2 - 250, 70, WHITE);
-	DrawText("Flying Bird", GetScreenWidth() / 2 - 158, GetScreenHeight() / 2 - 249, 70, GREEN);
+	DrawText("Flying Bird", GetScreenWidth() / 2 - 158, GetScreenHeight() / 2 - 249, 70, RED);
+	
 	DrawText("Play", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 - 30, 50, BLACK);
 	DrawText("Credits", GetScreenWidth() / 2 - 60, GetScreenHeight() / 2 + 175, 50, BLACK);
 	
@@ -67,16 +74,31 @@ void CheckDefeat(bool isDefeat) {
 void DrawCredits() {
 	BeginDrawing();
 	ClearBackground(BLACK);
-
-	DrawText("Flying Bird Credits", GetScreenWidth() / 2 - 220, GetScreenHeight() / 2 - 200, 50, WHITE);
-	DrawText("Made by Manuel Dantuono", GetScreenWidth() / 2 - 130, GetScreenHeight() / 2 - 50, 20, WHITE);
-	DrawText("Created with Raylib by Ray", GetScreenWidth() / 2 - 130, GetScreenHeight() / 2, 20, WHITE);
-	DrawText("(Space) to back Menu", GetScreenWidth() / 2 - 100, GetScreenHeight() / 2 + 150, 20, WHITE);
-	if (IsKeyPressed(KEY_SPACE))
+	
+	DrawBackgroundGame();
+	DrawText("Flying Bird Credits", GetScreenWidth() / 2 - 220, GetScreenHeight() / 2 - 200, 50, BLACK);
+	DrawText("Made by Manuel Dantuono", GetScreenWidth() / 2 - 130, GetScreenHeight() / 2 - 50, 40, BLACK);
+	DrawText("Created with Raylib by Ray", GetScreenWidth() / 2 - 130, GetScreenHeight() / 2, 40, BLACK);
+	if (IsKeyPressed(KEY_ESCAPE))
 	{
 		gamescene = GameScene::Menu;
 	}
+
 	DrawVersion();
+	
+	Rectangle mousePosition = { GetMousePosition().x, GetMousePosition().y, 1,1 };
+	Rectangle back = { 50, static_cast<float>(GetScreenHeight() - 100), static_cast<float>(GetScreenWidth() / 16), static_cast<float>(GetScreenHeight() / 16) };
+	DrawRectangleRec(back, WHITE);
+	DrawText("Back", 60, GetScreenHeight() - 80, 25, BLACK);
+	if (CheckCollisionRecs(mousePosition,back))
+	{
+		DrawRectangleRec(back, BLACK);
+		DrawText("Back", 60, GetScreenHeight() - 80, 25, WHITE);
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+		{
+			gamescene = GameScene::Menu;
+		}
+	}
 
 	EndDrawing();
 }

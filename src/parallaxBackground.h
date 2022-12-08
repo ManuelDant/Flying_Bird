@@ -12,10 +12,11 @@ static float speedMountain = 150;
 static float scrollbackground;
 static float speedCity = 50;
 
-void LoadResources();
-void UnloadResources();
+void LoadParallax();
+void UnloadParallax();
 void DrawBackgroundGame();
 void DrawFloorParallax();
 void DrawMountainParallax();
 void DrawBackgroundParallax();
 void UpdateParallax();
+void RestartParallax();

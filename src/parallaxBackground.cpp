@@ -53,3 +53,9 @@ void UpdateParallax() {
 
 	if (scrollbackground <= -background.width * 2) scrollbackground = 0;
 }
+
+void RestartParallax() {
+	scrollback = 0;
+	scrollbackMountain = 0;
+	scrollbackground = 0;
+}
