@@ -2,7 +2,7 @@
 
 Player CreatePlayer() {
 	Player player{};
-	player.height = static_cast<float>(GetScreenHeight() / 10);
+	player.height = static_cast<float>(GetScreenHeight() / 14);
 	player.width = static_cast<float>(GetScreenWidth() / 17);
 
 	player.position.x = static_cast<float>(GetScreenWidth() / 15);

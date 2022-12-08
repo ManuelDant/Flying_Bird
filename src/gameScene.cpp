@@ -67,7 +67,7 @@ void DrawCredits() {
 	BeginDrawing();
 	ClearBackground(BLACK);
 
-	DrawText("Flying Bird Credits", GetScreenWidth() / 2 - 250, GetScreenHeight() / 2 - 200, 50, WHITE);
+	DrawText("Flying Bird Credits", GetScreenWidth() / 2 - 220, GetScreenHeight() / 2 - 200, 50, WHITE);
 	DrawText("Made by Manuel Dantuono", GetScreenWidth() / 2 - 130, GetScreenHeight() / 2 - 50, 20, WHITE);
 	DrawText("Created with Raylib by Ray", GetScreenWidth() / 2 - 130, GetScreenHeight() / 2, 20, WHITE);
 	DrawText("(Space) to back Menu", GetScreenWidth() / 2 - 100, GetScreenHeight() / 2 + 150, 20, WHITE);
@@ -90,6 +90,8 @@ void DrawButtons() {
 
 	if (CheckCollisionRecs(mousePosition, play))
 	{
+		DrawRectangleRec(play, RED);
+		DrawText("Play", GetScreenWidth() / 2 - 28, GetScreenHeight() / 2 - 30, 48, WHITE);
 		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 		{
 			gamescene = GameScene::Gameplay;
@@ -98,6 +100,8 @@ void DrawButtons() {
 
 	if (CheckCollisionRecs(mousePosition, credits))
 	{
+		DrawRectangleRec(credits, RED);
+		DrawText("Credits", GetScreenWidth() / 2 - 54, GetScreenHeight() / 2 + 175, 48, WHITE);
 		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 		{
 			gamescene = GameScene::Credits;

@@ -10,6 +10,8 @@ const int screenHeight = 768;
 void InitGame();
 void ColissionPlayerObstacle(Player& Player, Obstacle& Obstacle);
 void CheckScore(Obstacle& Obstacle);
+void LoadTextures();
+void UnloadTextures();
 
 Player player;
 Rectangle playerColission;
@@ -18,15 +20,19 @@ Obstacle obstacle[maxObstacles];
 
 bool isPlay = false;
 
+Texture2D playerImg;
+Texture2D obstacleDownImg;
+Texture2D obstacleUpImg;
+
 void StartGame() {
     InitWindow(screenWidth, screenHeight, "Flying Bird by Manuel Dantuono");
-
+    LoadTextures();
     InitGame();
     while (!WindowShouldClose())
     {
         ScreenScene();   
     }
-
+    UnloadTextures();
     CloseWindow();
 }
 
@@ -66,13 +72,22 @@ void DrawGame() {
     ClearBackground(BLACK);
 
     //Player
+#if _DEBUG
     DrawRectangle(static_cast<int>(player.position.x), static_cast<int>(player.position.y), static_cast<int>(player.width), static_cast<int>(player.height), RED);
+#endif
+    DrawTexture(playerImg, static_cast<int>(player.position.x - player.width / 8), static_cast<int>(player.position.y - player.height / 2.5f), WHITE);
+ 
 
     //Obstacle
     for (int i = 0; i < maxObstacles; i++)
     {
+#if _DEBUG
         DrawRectangle(static_cast<int>(obstacle[i].positionDown.x), static_cast<int>(obstacle[i].positionDown.y), static_cast<int>(obstacle[i].widthDown), static_cast<int>(obstacle[i].heightDown), GREEN);
         DrawRectangle(static_cast<int>(obstacle[i].positionUp.x), static_cast<int>(obstacle[i].positionUp.y), static_cast<int>(obstacle[i].widthUp), static_cast<int>(obstacle[i].heightUp), GREEN);
+#endif
+        DrawTexture(obstacleDownImg, static_cast<int>(obstacle[i].positionUp.x - obstacle[i].widthUp / 1.12f), static_cast<int>(obstacle[i].positionUp.y - obstacle[i].heightUp / 4.5f), WHITE);
+        DrawTexture(obstacleUpImg, static_cast<int>(obstacle[i].positionDown.x - obstacle[i].widthDown / 1.12f), static_cast<int>(obstacle[i].positionDown.y - obstacle[i].heightDown / 4), WHITE);
+        
     }
 
     //Score
@@ -130,4 +145,22 @@ void CheckScore(Obstacle& Obstacle) {
         Obstacle.checkAddScore = 0;
     }
 
+}
+
+void LoadTextures() {
+    playerImg = LoadTexture("rsc/bird.png");
+    obstacleDownImg = LoadTexture("rsc/obstacleDown.png");
+    obstacleUpImg = LoadTexture("rsc/obstacleUp.png");
+
+    obstacleDownImg.width = GetScreenWidth() / 4;
+    obstacleDownImg.height = GetScreenHeight();
+
+    obstacleUpImg.width = GetScreenWidth() / 4;
+    obstacleUpImg.height = GetScreenHeight();
+}
+
+void UnloadTextures() {
+    UnloadTexture(playerImg);
+    UnloadTexture(obstacleDownImg);
+    UnloadTexture(obstacleUpImg);
 }
