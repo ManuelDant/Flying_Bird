@@ -1,12 +1,13 @@
-# Flying Bird 0.3
+# Flying Bird 0.4
 
 
 Game inspired by the famous Flappy Bird game for a university project.
 
-### Version 0.3: Collisions Implemented!! Also punctuation and if you crash, you Respawn!
+### Version 0.4: Now includes a menu and credits, enjoy the new assets for even more immersion!
 
-![img](https://github.com/ManuelDant/Flying_Bird/blob/main/screenshots/img1_0.3.png)
-![img](https://github.com/ManuelDant/Flying_Bird/blob/main/screenshots/img2_0.3.png)
+![img](https://github.com/ManuelDant/Flying_Bird/blob/main/screenshots/img1_0.4.png)
+![img](https://github.com/ManuelDant/Flying_Bird/blob/main/screenshots/img3_0.4.png)
+![img](https://github.com/ManuelDant/Flying_Bird/blob/main/screenshots/img2_0.4.png)
 ## Author:
 
 Manuel Dantuono: https://github.com/ManuelDant
