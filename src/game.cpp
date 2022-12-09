@@ -4,7 +4,7 @@
 #include "obstacle.h"
 #include "score.h"
 #include "gameScene.h"
-//https://www.epidemicsound.com/es/track/IPtGqTMW05/
+
 const int screenWidth = 1280; //1280
 const int screenHeight = 768; //768
 
@@ -123,6 +123,14 @@ void DrawGame() {
     //Version
     DrawVersion();
 
+    if (!isPlay)
+    {
+        DrawText("Click to Jump!", GetScreenWidth() / 7, GetScreenHeight() / 2, 40, BLACK);
+        DrawText("Click to Jump!", static_cast<int>(GetScreenWidth() / 6.95f), static_cast<int>(GetScreenHeight() / 1.98f), 40, RED);
+        DrawText("Escape to Pause!", GetScreenWidth() / 7, static_cast<int>(GetScreenHeight() / 1.7f), 40, BLACK);
+        DrawText("Escape to Pause!", static_cast<int>(GetScreenWidth() / 6.95f), static_cast<int>(GetScreenHeight() / 1.69f), 40, RED);
+    }
+
     if (isPause)
     {
         DrawPause();
@@ -214,22 +222,27 @@ void DrawPause() {
     Rectangle mousePosition = { GetMousePosition().x, GetMousePosition().y, 1,1 };
     Rectangle Reanude = { static_cast<float>(GetScreenWidth() / 3.5f), static_cast<float>(GetScreenHeight() / 2) ,static_cast<float>(GetScreenWidth() / 7), static_cast<float>(GetScreenHeight() / 10) };
     Rectangle Menu = { static_cast<float>(GetScreenWidth() / 2 + GetScreenWidth() / 12), static_cast<float>(GetScreenHeight() / 2) ,static_cast<float>(GetScreenWidth() / 7), static_cast<float>(GetScreenHeight() / 10) };
+    Rectangle Pause{ static_cast<float>(GetScreenWidth() / 3.9f), static_cast<float>(GetScreenHeight() / 3.9f), static_cast<float>(GetScreenWidth() / 2), static_cast<float>(GetScreenHeight() / 1.9f) };
 
-    DrawRectangle(GetScreenWidth() / 4, GetScreenHeight() / 4, GetScreenWidth() / 2, GetScreenHeight() / 2, BLACK);
-    DrawRectangle(static_cast<int>(GetScreenWidth() / 3.9f), static_cast<int>(GetScreenHeight() / 3.9f), static_cast<int>(GetScreenWidth() / 2), static_cast<int>(GetScreenHeight() / 1.9f), SKYBLUE);
+    DrawRectangle(GetScreenWidth() / 4, GetScreenHeight() / 4, static_cast<int>(GetScreenWidth() / 1.95f), static_cast<int>(GetScreenHeight() / 1.8f), BLACK);
+  
+    DrawRectangleGradientEx(Pause, SKYBLUE, BLUE, DARKBLUE, WHITE);
 
     DrawRectangleRec(Reanude, WHITE);
     DrawRectangleRec(Menu, WHITE);
 
     DrawText("Game Paused!", static_cast<int>(GetScreenWidth() / 2.5f), GetScreenHeight() / 3, 50, BLACK);
+    DrawText("Game Paused!", static_cast<int>(GetScreenWidth() / 2.49f), static_cast<int>(GetScreenHeight() / 2.95f), 50, RED);
     DrawText("Reanude", static_cast<int>(GetScreenWidth() / 3.4f), static_cast<int>(GetScreenHeight() / 1.9f), 40, BLACK);
+    DrawText("Reanude", static_cast<int>(GetScreenWidth() / 3.39f), static_cast<int>(GetScreenHeight() / 1.89f), 40, RED);
     DrawText("Menu", static_cast<int>(GetScreenWidth() / 2 + GetScreenWidth() / 9), static_cast<int>(GetScreenHeight() / 1.9f), 40, BLACK);
+    DrawText("Menu", static_cast<int>(GetScreenWidth() / 2 + GetScreenWidth() / 8.99f), static_cast<int>(GetScreenHeight() / 1.89f), 40, RED);
 
     if (CheckCollisionRecs(mousePosition, Reanude))
     {
         DrawRectangleRec(Reanude, BLACK);
         DrawText("Reanude", static_cast<int>(GetScreenWidth() / 3.4f), static_cast<int>(GetScreenHeight() / 1.9f), 40, WHITE);
-        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
         {
             isPause = false;
         }

@@ -2,6 +2,7 @@
 #include "score.h"
 #include "parallaxBackground.h"
 
+#include <string>
 
 void ScreenScene() {
 	switch (gamescene)
@@ -73,11 +74,15 @@ void CheckDefeat(bool isDefeat) {
 void DrawCredits() {
 	BeginDrawing();
 	ClearBackground(BLACK);
-	
+
 	DrawBackgroundGame();
-	DrawText("Flying Bird Credits", GetScreenWidth() / 2 - 220, GetScreenHeight() / 2 - 200, 50, BLACK);
-	DrawText("Made by Manuel Dantuono", GetScreenWidth() / 2 - 130, GetScreenHeight() / 2 - 50, 40, BLACK);
-	DrawText("Created with Raylib by Ray", GetScreenWidth() / 2 - 130, GetScreenHeight() / 2, 40, BLACK);
+	DrawText("Flying Bird Credits", GetScreenWidth() / 2 - 220, GetScreenHeight() / 2 - 200, 50, RED);
+	DrawText("Flying Bird Credits", GetScreenWidth() / 2 - 219, GetScreenHeight() / 2 - 199, 50, BLACK);
+	DrawText("Textures Made by Manuel Dantuono", GetScreenWidth() / 2 - 350, GetScreenHeight() / 2 - 50, 40, BLACK);
+	DrawText("Bird and Obstacles inspired by the game Flappy Bird", GetScreenWidth() / 2 - 500, GetScreenHeight() / 2 + 50, 40, BLACK);
+	DrawText("Created with Raylib by Ray", GetScreenWidth() / 2 - 250, GetScreenHeight() / 2 + 280, 40, BLACK);
+
+
 	if (IsKeyPressed(KEY_ESCAPE))
 	{
 		gamescene = GameScene::Menu;
@@ -87,8 +92,14 @@ void DrawCredits() {
 	
 	Rectangle mousePosition = { GetMousePosition().x, GetMousePosition().y, 1,1 };
 	Rectangle back = { 50, static_cast<float>(GetScreenHeight() - 100), static_cast<float>(GetScreenWidth() / 16), static_cast<float>(GetScreenHeight() / 16) };
+	Rectangle audio = { static_cast<float>(GetScreenWidth() / 2 - 100), static_cast<float>(GetScreenHeight() / 2 + 150 ), 200, 100 };
+
+	std::string audioScore = " start https://www.epidemicsound.com/es/track/IPtGqTMW05/";
+
 	DrawRectangleRec(back, WHITE);
+	DrawRectangleRec(audio, WHITE);
 	DrawText("Back", 60, GetScreenHeight() - 80, 25, BLACK);
+
 	if (CheckCollisionRecs(mousePosition,back))
 	{
 		DrawRectangleRec(back, BLACK);
@@ -98,6 +109,17 @@ void DrawCredits() {
 			gamescene = GameScene::Menu;
 		}
 	}
+
+	if (CheckCollisionRecs(mousePosition,audio))
+	{
+		DrawRectangleRec(audio, BLACK);
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+		{
+			system(audioScore.c_str());
+		}
+	}
+	DrawText("Audio", GetScreenWidth() / 2 - 50, GetScreenHeight() / 2 + 180, 40, BLACK);
+	DrawText("Audio", GetScreenWidth() / 2 - 51, GetScreenHeight() / 2 + 181, 40, RED);
 
 	EndDrawing();
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include "raylib.h"
 
-static Texture2D floor;
+static Texture2D floorTexture;
 static Texture2D mountain;
 static Texture2D background;
 

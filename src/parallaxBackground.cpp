@@ -1,12 +1,12 @@
 #include "parallaxBackground.h"
 
 void LoadParallax() {
-	floor = LoadTexture("rsc/floorParallax.png");
+	floorTexture = LoadTexture("rsc/floorParallax.png");
 	mountain = LoadTexture("rsc/mountainParallax.png");
 	background = LoadTexture("rsc/backgroundParallax.png");
 
-	floor.width = GetScreenWidth();
-	floor.height = GetScreenWidth() / 16;
+	floorTexture.width = GetScreenWidth();
+	floorTexture.height = GetScreenWidth() / 16;
 	mountain.width = GetScreenWidth() / 2;
 	mountain.height = GetScreenHeight() / 2;
 	background.width = GetScreenWidth();
@@ -14,7 +14,7 @@ void LoadParallax() {
 }
 
 void UnloadParallax() {
-	UnloadTexture(floor);
+	UnloadTexture(floorTexture);
 	UnloadTexture(mountain);
 	UnloadTexture(background);
 }
@@ -26,8 +26,8 @@ void DrawBackgroundGame() {
 }
 
 void DrawFloorParallax() {
-	DrawTextureEx(floor, { scrollback, static_cast<float>(GetScreenHeight() - 50) }, 0, 2, WHITE);
-	DrawTextureEx(floor, { floor.width * 2 + scrollback, static_cast<float>(GetScreenHeight() - 50) }, 0, 2, WHITE);
+	DrawTextureEx(floorTexture, { scrollback, static_cast<float>(GetScreenHeight() - 50) }, 0, 2, WHITE);
+	DrawTextureEx(floorTexture, { floorTexture.width * 2 + scrollback, static_cast<float>(GetScreenHeight() - 50) }, 0, 2, WHITE);
 }
 
 void DrawMountainParallax() {
@@ -43,7 +43,7 @@ void DrawBackgroundParallax() {
 void UpdateParallax() {
 	scrollback -= speedFloor * GetFrameTime();
 
-	if (scrollback <= -floor.width * 2) scrollback = 0;
+	if (scrollback <= -floorTexture.width * 2) scrollback = 0;
 
 	scrollbackMountain -= speedMountain * GetFrameTime();
 
