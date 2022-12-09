@@ -1,4 +1,4 @@
-#include "parallaxBackground.h"
+#include "parallax_background.h"
 
 void LoadParallax() {
 	floorTexture = LoadTexture("rsc/floorParallax.png");

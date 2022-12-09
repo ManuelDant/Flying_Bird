@@ -47,11 +47,12 @@ void MoveObstacle(Obstacle Obstacle[]) {
 
 void StartPositionObstacle(Obstacle Obstacle[]) {
 	int startDistance = 650;
+	float distanceObstacles = 3.5f;
 
 	for (int i = 0; i < maxObstacles; i++)
 	{
-		Obstacle[i].positionDown.x = static_cast<float>((i  * GetScreenWidth() / 3.5f) + startDistance);
-		Obstacle[i].positionUp.x = static_cast<float>((i  * GetScreenWidth() / 3.5f) + startDistance);
+		Obstacle[i].positionDown.x = static_cast<float>((i  * GetScreenWidth() / distanceObstacles) + startDistance);
+		Obstacle[i].positionUp.x = static_cast<float>((i  * GetScreenWidth() / distanceObstacles) + startDistance);
 	}
 
 }

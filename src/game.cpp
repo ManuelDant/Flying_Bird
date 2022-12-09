@@ -1,9 +1,10 @@
 #include "game.h"
-#include "parallaxBackground.h"
+
+#include "parallax_background.h"
 #include "player.h"
 #include "obstacle.h"
 #include "score.h"
-#include "gameScene.h"
+#include "game_scene.h"
 
 const int screenWidth = 1280; //1280
 const int screenHeight = 768; //768
@@ -101,15 +102,16 @@ void DrawGame() {
         DrawTexture(obstacleUpImg, static_cast<int>(obstacle[i].positionDown.x - obstacle[i].widthDown / 1.12f), static_cast<int>(obstacle[i].positionDown.y - obstacle[i].heightDown / 4), WHITE);
         
     }
-
+    int positionCircle = 100;
+    float sizeCircle = 40;
     Rectangle mousePosition = { GetMousePosition().x, GetMousePosition().y, 1,1 };
-    DrawCircle(GetScreenWidth() - 100, 100, 45, BLACK);
-    DrawCircle(GetScreenWidth() - 100, 100, 40, WHITE);
+    DrawCircle(GetScreenWidth() - positionCircle, positionCircle, sizeCircle + 5, BLACK);
+    DrawCircle(GetScreenWidth() - positionCircle, positionCircle, sizeCircle, WHITE);
     
 
-    if (CheckCollisionCircleRec({ static_cast<float>(GetScreenWidth() - 100), 100 }, 40, mousePosition))
+    if (CheckCollisionCircleRec({ static_cast<float>(GetScreenWidth() - positionCircle), static_cast<float>(positionCircle) }, sizeCircle, mousePosition))
     {
-        DrawCircle(GetScreenWidth() - 100, 100, 40, RED);
+        DrawCircle(GetScreenWidth() - positionCircle, positionCircle, sizeCircle, RED);
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
         {
             isPause = true;
@@ -125,10 +127,10 @@ void DrawGame() {
 
     if (!isPlay)
     {
-        DrawText("Click to Jump!", GetScreenWidth() / 7, GetScreenHeight() / 2, 40, BLACK);
-        DrawText("Click to Jump!", static_cast<int>(GetScreenWidth() / 6.95f), static_cast<int>(GetScreenHeight() / 1.98f), 40, RED);
+        DrawText("Click to Jump!", GetScreenWidth() / 7, GetScreenHeight() / 2, static_cast<int>(sizeCircle), BLACK);
+        DrawText("Click to Jump!", static_cast<int>(GetScreenWidth() / 6.95f), static_cast<int>(GetScreenHeight() / 1.98f), static_cast<int>(sizeCircle), RED);
         DrawText("Escape to Pause!", GetScreenWidth() / 7, static_cast<int>(GetScreenHeight() / 1.7f), 40, BLACK);
-        DrawText("Escape to Pause!", static_cast<int>(GetScreenWidth() / 6.95f), static_cast<int>(GetScreenHeight() / 1.69f), 40, RED);
+        DrawText("Escape to Pause!", static_cast<int>(GetScreenWidth() / 6.95f), static_cast<int>(GetScreenHeight() / 1.69f), static_cast<int>(sizeCircle), RED);
     }
 
     if (isPause)
@@ -255,7 +257,7 @@ void DrawPause() {
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
             isPause = false;
-            CheckDefeat(1);
+            CheckDefeat(true);
         }
     }
 }

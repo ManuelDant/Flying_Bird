@@ -7,7 +7,6 @@ enum GameScene {
 	Credits,
 }static gamescene;
 
-void StartGame();
 void ScreenScene();
 void GameplayScene();
 void MenuScene();

@@ -1,8 +1,11 @@
-#include "gameScene.h"
-#include "score.h"
-#include "parallaxBackground.h"
+#include "game_scene.h"
 
 #include <string>
+
+#include "game.h"
+#include "score.h"
+#include "parallax_background.h"
+
 
 void ScreenScene() {
 	switch (gamescene)

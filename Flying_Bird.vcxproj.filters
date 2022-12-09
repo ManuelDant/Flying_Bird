@@ -5,51 +5,60 @@
     <ClCompile Include="src\game.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\player.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\timer.cpp">
+    <ClCompile Include="src\game_scene.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\obstacle.cpp">
-      <Filter>src</Filter>
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\player.cpp">
+      <Filter>src\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\timer.cpp">
+      <Filter>src\Tools</Filter>
     </ClCompile>
     <ClCompile Include="src\score.cpp">
-      <Filter>src</Filter>
+      <Filter>src\Tools</Filter>
     </ClCompile>
-    <ClCompile Include="src\gameScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\parallaxBackground.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="src\parallax_background.cpp">
+      <Filter>src\ParallaxBackground</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\player.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\timer.h">
+    <ClInclude Include="src\game_scene.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\obstacle.h">
-      <Filter>src</Filter>
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\player.h">
+      <Filter>src\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\timer.h">
+      <Filter>src\Tools</Filter>
     </ClInclude>
     <ClInclude Include="src\score.h">
-      <Filter>src</Filter>
+      <Filter>src\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="src\gameScene.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\parallaxBackground.h">
-      <Filter>src</Filter>
+    <ClInclude Include="src\parallax_background.h">
+      <Filter>src\ParallaxBackground</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
       <UniqueIdentifier>{ecf07cc9-5825-4e79-be57-0fda4d964c84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Objects">
+      <UniqueIdentifier>{f1df483f-6572-4c8a-973a-44bb80c6c8be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Tools">
+      <UniqueIdentifier>{528e70a9-515d-484a-9fb5-db602cd9d794}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ParallaxBackground">
+      <UniqueIdentifier>{35bde55b-f618-47f2-bf38-df1f0fef06ad}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
