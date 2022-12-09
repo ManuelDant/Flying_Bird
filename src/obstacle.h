@@ -1,8 +1,6 @@
 #pragma once
 #include "raylib.h"
 
-
-
 struct Obstacle {
 	Vector2 positionUp;
 	Vector2 positionDown;
@@ -19,7 +17,6 @@ struct Obstacle {
 };
 
 static const int maxObstacles = 4;
-static int betweenObstacles = 760;
 
 Obstacle CreateObstacle();
 void MoveObstacle(Obstacle Obstacle[]);

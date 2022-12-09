@@ -4,9 +4,9 @@
 #include "obstacle.h"
 #include "score.h"
 #include "gameScene.h"
-
-const int screenWidth = 1280;
-const int screenHeight = 768;
+//https://www.epidemicsound.com/es/track/IPtGqTMW05/
+const int screenWidth = 1280; //1280
+const int screenHeight = 768; //768
 
 void InitGame();
 void ColissionPlayerObstacle(Player& Player, Obstacle& Obstacle);
@@ -26,9 +26,11 @@ bool isPause = false;
 Texture2D playerImg;
 Texture2D obstacleDownImg;
 Texture2D obstacleUpImg;
+Sound scoreMusic;
 
 void StartGame() {
     InitWindow(screenWidth, screenHeight, "Flying Bird by Manuel Dantuono");
+    InitAudioDevice();
     LoadTextures();
     LoadParallax();
     InitGame();
@@ -38,6 +40,7 @@ void StartGame() {
     }
     UnloadTextures();
     UnloadParallax();
+    CloseAudioDevice();
     CloseWindow();
 }
 
@@ -155,10 +158,15 @@ void ColissionPlayerObstacle(Player& Player, Obstacle& Obstacle) {
     {
         RestartGame();
     }
+
+    if (Player.position.y < 0 - Player.height)
+    {
+        RestartGame();
+    }
 }
 
 void CheckScore(Obstacle& Obstacle) {
-    Rectangle checkScore = { Obstacle.positionDown.x + Obstacle.widthDown / 2, Obstacle.positionDown.y + betweenObstacles / 2, Obstacle.widthDown / 6, Obstacle.heightDown };
+    Rectangle checkScore = { Obstacle.positionDown.x + Obstacle.widthDown / 2, Obstacle.positionDown.y + GetScreenHeight() / 2, Obstacle.widthDown / 6, Obstacle.heightDown };
 
     if (CheckCollisionRecs(playerColission, checkScore))
     {
@@ -166,6 +174,7 @@ void CheckScore(Obstacle& Obstacle) {
         if (Obstacle.checkAddScore == 1)
         {
             AddScore(1);
+            PlaySound(scoreMusic);
             UpdateMaxScore();
         }
     }
@@ -180,12 +189,19 @@ void LoadTextures() {
     playerImg = LoadTexture("rsc/bird.png");
     obstacleDownImg = LoadTexture("rsc/obstacleDown.png");
     obstacleUpImg = LoadTexture("rsc/obstacleUp.png");
+    scoreMusic = LoadSound("rsc/point.mp3");
+
+    playerImg.width = GetScreenWidth() / 12;
+    playerImg.height = GetScreenHeight() / 8;
 
     obstacleDownImg.width = GetScreenWidth() / 4;
     obstacleDownImg.height = GetScreenHeight();
 
     obstacleUpImg.width = GetScreenWidth() / 4;
     obstacleUpImg.height = GetScreenHeight();
+
+    SetSoundVolume(scoreMusic, 1);
+    SetSoundPitch(scoreMusic, 3);
 }
 
 void UnloadTextures() {

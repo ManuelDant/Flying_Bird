@@ -46,7 +46,7 @@ void DrawMenu() {
 	ClearBackground(BLACK);
 	RestartGame();
 	RestartParallax();
-	DrawMaxScore();
+
 	DrawBackgroundGame();
 	DrawButtons();
 
@@ -56,7 +56,7 @@ void DrawMenu() {
 	
 	DrawText("Play", GetScreenWidth() / 2 - 30, GetScreenHeight() / 2 - 30, 50, BLACK);
 	DrawText("Credits", GetScreenWidth() / 2 - 60, GetScreenHeight() / 2 + 175, 50, BLACK);
-	
+	DrawMaxScore();
 	DrawVersion();
 
 	EndDrawing();

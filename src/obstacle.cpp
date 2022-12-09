@@ -9,10 +9,10 @@ Obstacle CreateObstacle() {
 	obstacle.heightDown = static_cast<float>(GetScreenHeight() / 2 + 100);
 	obstacle.widthDown = static_cast<float>(GetScreenWidth() / 12);
 
-	random = GetRandomValue(static_cast<int>(0 - obstacle.heightDown), static_cast<int>(GetScreenHeight() / 2 - betweenObstacles / 2));
+	random = GetRandomValue(static_cast<int>(0 - obstacle.heightDown), static_cast<int>(GetScreenHeight() / 2 - GetScreenHeight() / 2));
 
 	obstacle.positionDown.y = static_cast<float>(random);
-	obstacle.positionUp.y = obstacle.positionDown.y + betweenObstacles;
+	obstacle.positionUp.y = obstacle.positionDown.y + GetScreenHeight();
 
 	obstacle.positionUp.x = GetScreenWidth() / 2  - obstacle.widthUp;
 	obstacle.positionDown.x = GetScreenWidth() / 2- obstacle.widthDown;
@@ -35,10 +35,10 @@ void MoveObstacle(Obstacle Obstacle[]) {
 			Obstacle[i].positionDown.x = GetScreenWidth() + Obstacle[i].widthDown;
 			Obstacle[i].positionUp.x = GetScreenWidth() + Obstacle[i].widthUp;
 
-			random = GetRandomValue(static_cast<int>(0 - Obstacle[i].heightDown), static_cast<int>(GetScreenHeight() / 2 - betweenObstacles / 2));
+			random = GetRandomValue(static_cast<int>(0 - Obstacle[i].heightDown), static_cast<int>(GetScreenHeight() / 2 - GetScreenHeight() / 2));
 
 			Obstacle[i].positionDown.y = static_cast<float>(random);
-			Obstacle[i].positionUp.y = Obstacle[i].positionDown.y + betweenObstacles;
+			Obstacle[i].positionUp.y = Obstacle[i].positionDown.y + GetScreenHeight();
 		}
 	}
 	
