@@ -13,6 +13,7 @@ void ColissionPlayerObstacle(Player& Player, Obstacle& Obstacle);
 void CheckScore(Obstacle& Obstacle);
 void LoadTextures();
 void UnloadTextures();
+void DrawPause();
 
 Player player;
 Rectangle playerColission;
@@ -20,6 +21,7 @@ Rectangle playerColission;
 Obstacle obstacle[maxObstacles];
 
 bool isPlay = false;
+bool isPause = false;
 
 Texture2D playerImg;
 Texture2D obstacleDownImg;
@@ -55,7 +57,7 @@ void Update() {
         isPlay = true;
     }
 
-    if (isPlay)
+    if (isPlay && !isPause)
     {  
         UpdateParallax();
         PlayerInput(player);
@@ -70,6 +72,8 @@ void Update() {
         }
        
     }   
+
+    
 }
 
 void DrawGame() {
@@ -95,12 +99,31 @@ void DrawGame() {
         
     }
 
+    Rectangle mousePosition = { GetMousePosition().x, GetMousePosition().y, 1,1 };
+    DrawCircle(GetScreenWidth() - 100, 100, 45, BLACK);
     DrawCircle(GetScreenWidth() - 100, 100, 40, WHITE);
+    
+
+    if (CheckCollisionCircleRec({ static_cast<float>(GetScreenWidth() - 100), 100 }, 40, mousePosition))
+    {
+        DrawCircle(GetScreenWidth() - 100, 100, 40, RED);
+        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+        {
+            isPause = true;
+        }
+        
+    }
+    DrawText("| |", GetScreenWidth() - 120, 70, 60, BLACK);
     //Score
     DrawScore();
 
     //Version
     DrawVersion();
+
+    if (isPause)
+    {
+        DrawPause();
+    }
 
     EndDrawing();
 }
@@ -169,4 +192,45 @@ void UnloadTextures() {
     UnloadTexture(playerImg);
     UnloadTexture(obstacleDownImg);
     UnloadTexture(obstacleUpImg);
+}
+
+void DrawPause() {
+    Rectangle mousePosition = { GetMousePosition().x, GetMousePosition().y, 1,1 };
+    Rectangle Reanude = { static_cast<float>(GetScreenWidth() / 3.5f), static_cast<float>(GetScreenHeight() / 2) ,static_cast<float>(GetScreenWidth() / 7), static_cast<float>(GetScreenHeight() / 10) };
+    Rectangle Menu = { static_cast<float>(GetScreenWidth() / 2 + GetScreenWidth() / 12), static_cast<float>(GetScreenHeight() / 2) ,static_cast<float>(GetScreenWidth() / 7), static_cast<float>(GetScreenHeight() / 10) };
+
+    DrawRectangle(GetScreenWidth() / 4, GetScreenHeight() / 4, GetScreenWidth() / 2, GetScreenHeight() / 2, BLACK);
+    DrawRectangle(static_cast<int>(GetScreenWidth() / 3.9f), static_cast<int>(GetScreenHeight() / 3.9f), static_cast<int>(GetScreenWidth() / 2), static_cast<int>(GetScreenHeight() / 1.9f), SKYBLUE);
+
+    DrawRectangleRec(Reanude, WHITE);
+    DrawRectangleRec(Menu, WHITE);
+
+    DrawText("Game Paused!", static_cast<int>(GetScreenWidth() / 2.5f), GetScreenHeight() / 3, 50, BLACK);
+    DrawText("Reanude", static_cast<int>(GetScreenWidth() / 3.4f), static_cast<int>(GetScreenHeight() / 1.9f), 40, BLACK);
+    DrawText("Menu", static_cast<int>(GetScreenWidth() / 2 + GetScreenWidth() / 9), static_cast<int>(GetScreenHeight() / 1.9f), 40, BLACK);
+
+    if (CheckCollisionRecs(mousePosition, Reanude))
+    {
+        DrawRectangleRec(Reanude, BLACK);
+        DrawText("Reanude", static_cast<int>(GetScreenWidth() / 3.4f), static_cast<int>(GetScreenHeight() / 1.9f), 40, WHITE);
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        {
+            isPause = false;
+        }
+    }
+
+    if (CheckCollisionRecs(mousePosition, Menu))
+    {
+        DrawRectangleRec(Menu, BLACK);
+        DrawText("Menu", static_cast<int>(GetScreenWidth() / 2 + GetScreenWidth() / 9), static_cast<int>(GetScreenHeight() / 1.9f), 40, WHITE);
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        {
+            isPause = false;
+            CheckDefeat(1);
+        }
+    }
+}
+
+void ActivatePause() {
+    isPause = true;
 }

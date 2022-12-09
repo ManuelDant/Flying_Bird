@@ -34,12 +34,11 @@ void GameplayScene() {
 	Update();
 	DrawGame();
 
-	
-	
 	if (IsKeyPressed(KEY_ESCAPE))
 	{
-		gamescene = GameScene::Menu;
+		ActivatePause();
 	}
+
 }
 
 void DrawMenu() {

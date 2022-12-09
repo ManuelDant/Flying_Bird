@@ -20,6 +20,7 @@ void RestartGame();
 void CreditsScene();
 void DrawCredits();
 void DrawButtons();
+void ActivatePause();
 
 
 
