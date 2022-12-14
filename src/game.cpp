@@ -1,5 +1,7 @@
 #include "game.h"
 
+#include "raylib.h"
+
 #include "parallax_background.h"
 #include "player.h"
 #include "obstacle.h"
@@ -9,12 +11,13 @@
 const int screenWidth = 1280; //1280
 const int screenHeight = 768; //768
 
-void InitGame();
-void ColissionPlayerObstacle(Player& Player, Obstacle& Obstacle);
-void CheckScore(Obstacle& Obstacle);
-void LoadTextures();
-void UnloadTextures();
-void DrawPause();
+static void InitGame();
+static void ColissionPlayerObstacle(Player& Player, Obstacle& Obstacle);
+static void CheckScore(Obstacle& Obstacle);
+static void LoadTextures();
+static void UnloadTextures();
+static void DrawPause();
+
 
 Player player;
 Rectangle playerColission;

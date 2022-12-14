@@ -1,7 +1,7 @@
 #pragma once
-#include "raylib.h"
-
 #include "timer.h"
+
+#include "raylib.h"
 
 struct Player {
 	Vector2 position;

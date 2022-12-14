@@ -1,5 +1,10 @@
 #include "score.h"
 
+#include "raylib.h"
+
+int score = 0;
+int maxScore = 0;
+
 void DrawScore() {
 	DrawText(TextFormat("Score: %02i", score), 8, 14, 40, BLACK);
 	DrawText(TextFormat("Score: %02i", score), 10, 15, 40, RED);

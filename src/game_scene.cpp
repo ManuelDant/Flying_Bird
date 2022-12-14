@@ -2,10 +2,18 @@
 
 #include <string>
 
+#include "raylib.h"
+
 #include "game.h"
 #include "score.h"
 #include "parallax_background.h"
 
+static void MenuScene();
+static void GameplayScene();
+static void CreditsScene();
+static void DrawMenu();
+static void DrawCredits();
+static void DrawButtons();
 
 void ScreenScene() {
 	switch (gamescene)

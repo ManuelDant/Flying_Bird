@@ -1,5 +1,20 @@
 #include "parallax_background.h"
 
+Texture2D floorTexture;
+Texture2D mountain;
+Texture2D background;
+
+float scrollback;
+float speedFloor = 300;
+float scrollbackMountain;
+float speedMountain = 150;
+float scrollbackground;
+float speedCity = 50;
+
+static void DrawFloorParallax();
+static void DrawBackgroundParallax();
+static void DrawMountainParallax();
+
 void LoadParallax() {
 	floorTexture = LoadTexture("rsc/floorParallax.png");
 	mountain = LoadTexture("rsc/mountainParallax.png");

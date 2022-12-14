@@ -1,6 +1,4 @@
 #pragma once
-#include "raylib.h"
-
 enum GameScene {
 	Menu,
 	Gameplay,
@@ -8,17 +6,11 @@ enum GameScene {
 }static gamescene;
 
 void ScreenScene();
-void GameplayScene();
-void MenuScene();
-void DrawMenu();
 void CheckDefeat(bool isDefeat);
 void DrawGame();
 void Update();
 void DrawVersion();
 void RestartGame();
-void CreditsScene();
-void DrawCredits();
-void DrawButtons();
 void ActivatePause();
 
 

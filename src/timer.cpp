@@ -1,5 +1,7 @@
 #include "timer.h"
 
+#include "raylib.h"
+
 void StartTimer(Timer* Timer, float lifetime) {
     if (Timer != NULL)
         Timer->lifeTime = lifetime;
