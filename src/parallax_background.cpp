@@ -1,5 +1,7 @@
 #include "parallax_background.h"
 
+#include "raylib.h"
+
 namespace flying {
 	Texture2D floorTexture;
 	Texture2D mountain;

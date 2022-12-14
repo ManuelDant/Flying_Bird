@@ -5,8 +5,8 @@ namespace flying {
 		Menu,
 		Gameplay,
 		Credits,
-	}static gamescene;
-
+	};
+	
 	void ScreenScene();
 	void CheckDefeat(bool isDefeat);
 	void DrawGame();

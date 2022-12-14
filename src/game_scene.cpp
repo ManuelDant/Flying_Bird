@@ -16,6 +16,8 @@ namespace flying {
 	static void DrawCredits();
 	static void DrawButtons();
 
+	static GameScene gamescene;
+
 	void ScreenScene() {
 		switch (gamescene)
 		{
