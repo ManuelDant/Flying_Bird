@@ -1,2 +1,5 @@
 #pragma once
-void StartGame();
+namespace flying {
+	void StartGame();
+}
+

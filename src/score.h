@@ -1,8 +1,13 @@
 #pragma once
-void DrawScore();
-void DrawMaxScore();
-void RestartScore();
-void UpdateMaxScore();
-void AddScore(int Score);
+namespace flying {
+
+	void DrawScore();
+	void DrawMaxScore();
+	void RestartScore();
+	void UpdateMaxScore();
+	void AddScore(int Score);
+
+}
+
 
 

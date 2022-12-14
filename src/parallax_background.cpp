@@ -1,76 +1,78 @@
 #include "parallax_background.h"
 
-Texture2D floorTexture;
-Texture2D mountain;
-Texture2D background;
+namespace flying {
+	Texture2D floorTexture;
+	Texture2D mountain;
+	Texture2D background;
 
-float scrollback;
-float speedFloor = 300;
-float scrollbackMountain;
-float speedMountain = 150;
-float scrollbackground;
-float speedCity = 50;
+	static float scrollback;
+	static float speedFloor = 300;
+	static float scrollbackMountain;
+	static float speedMountain = 150;
+	static float scrollbackground;
+	static float speedCity = 50;
 
-static void DrawFloorParallax();
-static void DrawBackgroundParallax();
-static void DrawMountainParallax();
+	static void DrawFloorParallax();
+	static void DrawBackgroundParallax();
+	static void DrawMountainParallax();
 
-void LoadParallax() {
-	floorTexture = LoadTexture("rsc/floorParallax.png");
-	mountain = LoadTexture("rsc/mountainParallax.png");
-	background = LoadTexture("rsc/backgroundParallax.png");
+	void LoadParallax() {
+		floorTexture = LoadTexture("rsc/floorParallax.png");
+		mountain = LoadTexture("rsc/mountainParallax.png");
+		background = LoadTexture("rsc/backgroundParallax.png");
 
-	floorTexture.width = GetScreenWidth();
-	floorTexture.height = GetScreenWidth() / 16;
-	mountain.width = GetScreenWidth() / 2;
-	mountain.height = GetScreenHeight() / 2;
-	background.width = GetScreenWidth();
-	background.height = GetScreenHeight();
-}
+		floorTexture.width = GetScreenWidth();
+		floorTexture.height = GetScreenWidth() / 16;
+		mountain.width = GetScreenWidth() / 2;
+		mountain.height = GetScreenHeight() / 2;
+		background.width = GetScreenWidth();
+		background.height = GetScreenHeight();
+	}
 
-void UnloadParallax() {
-	UnloadTexture(floorTexture);
-	UnloadTexture(mountain);
-	UnloadTexture(background);
-}
+	void UnloadParallax() {
+		UnloadTexture(floorTexture);
+		UnloadTexture(mountain);
+		UnloadTexture(background);
+	}
 
-void DrawBackgroundGame() {
-	DrawBackgroundParallax();
-	DrawMountainParallax();
-	DrawFloorParallax();
-}
+	void DrawBackgroundGame() {
+		DrawBackgroundParallax();
+		DrawMountainParallax();
+		DrawFloorParallax();
+	}
 
-void DrawFloorParallax() {
-	DrawTextureEx(floorTexture, { scrollback, static_cast<float>(GetScreenHeight() - 50) }, 0, 2, WHITE);
-	DrawTextureEx(floorTexture, { floorTexture.width * 2 + scrollback, static_cast<float>(GetScreenHeight() - 50) }, 0, 2, WHITE);
-}
+	void DrawFloorParallax() {
+		DrawTextureEx(floorTexture, { scrollback, static_cast<float>(GetScreenHeight() - 50) }, 0, 2, WHITE);
+		DrawTextureEx(floorTexture, { floorTexture.width * 2 + scrollback, static_cast<float>(GetScreenHeight() - 50) }, 0, 2, WHITE);
+	}
 
-void DrawMountainParallax() {
-	DrawTextureEx(mountain, { scrollbackMountain, 200 }, 0, 2, WHITE);
-	DrawTextureEx(mountain, { mountain.width * 2 + scrollbackMountain, 200 }, 0, 2, WHITE);
-}
+	void DrawMountainParallax() {
+		DrawTextureEx(mountain, { scrollbackMountain, 200 }, 0, 2, WHITE);
+		DrawTextureEx(mountain, { mountain.width * 2 + scrollbackMountain, 200 }, 0, 2, WHITE);
+	}
 
-void DrawBackgroundParallax() {
-	DrawTextureEx(background, { scrollbackground, 0 }, 0, 2, WHITE);
-	DrawTextureEx(background, { background.width * 2 + scrollbackground, 0 }, 0, 2, WHITE);
-}
+	void DrawBackgroundParallax() {
+		DrawTextureEx(background, { scrollbackground, 0 }, 0, 2, WHITE);
+		DrawTextureEx(background, { background.width * 2 + scrollbackground, 0 }, 0, 2, WHITE);
+	}
 
-void UpdateParallax() {
-	scrollback -= speedFloor * GetFrameTime();
+	void UpdateParallax() {
+		scrollback -= speedFloor * GetFrameTime();
 
-	if (scrollback <= -floorTexture.width * 2) scrollback = 0;
+		if (scrollback <= -floorTexture.width * 2) scrollback = 0;
 
-	scrollbackMountain -= speedMountain * GetFrameTime();
+		scrollbackMountain -= speedMountain * GetFrameTime();
 
-	if (scrollbackMountain <= -mountain.width * 2) scrollbackMountain = 0;
+		if (scrollbackMountain <= -mountain.width * 2) scrollbackMountain = 0;
 
-	scrollbackground -= speedCity * GetFrameTime();
+		scrollbackground -= speedCity * GetFrameTime();
 
-	if (scrollbackground <= -background.width * 2) scrollbackground = 0;
-}
+		if (scrollbackground <= -background.width * 2) scrollbackground = 0;
+	}
 
-void RestartParallax() {
-	scrollback = 0;
-	scrollbackMountain = 0;
-	scrollbackground = 0;
+	void RestartParallax() {
+		scrollback = 0;
+		scrollbackMountain = 0;
+		scrollbackground = 0;
+	}
 }

@@ -1,6 +1,6 @@
 #include "game.h"
 
 int main(void) {
-    StartGame();
+   flying::StartGame();
     return 0;
 }

@@ -3,18 +3,20 @@
 
 #include "raylib.h"
 
-struct Player {
-	Vector2 position;
-	float width;
-	float height;
+namespace flying {
+	struct Player {
+		Vector2 position;
+		float width;
+		float height;
 
-	bool isJump;
-	Timer jump;
-	float jumpTimer;
-	float speedJump;
-};
+		bool isJump;
+		Timer jump;
+		float jumpTimer;
+		float speedJump;
+	};
 
-Player CreatePlayer();
-void PlayerInput(Player& Player);
-void MovePlayer(Player& Player);
-void StartPositionPlayer(Player& Player);
+	Player CreatePlayer();
+	void PlayerInput(Player& Player);
+	void MovePlayer(Player& Player);
+	void StartPositionPlayer(Player& Player);
+}
